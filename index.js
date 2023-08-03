@@ -1,6 +1,6 @@
 const express = require('express');
 require("dotenv").config();
-const path = require('path');
+
 const cors = require("cors");
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(cors());
 
 const { Configuration, OpenAIApi } = require("openai");
 
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 async function generateCompletion(input) {
   try {
@@ -56,7 +56,7 @@ app.post('/generate', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.status(200).send("Hello From Quote Genrator")
 });
 
 app.listen(port, () => {
